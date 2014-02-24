@@ -5,53 +5,53 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/scripts.js"></script>
-    <title>Triangles</title>
+    <title>Package Rate Calculator</title>
   </head>
   <body>
     <div class="container">
-      <h1>Triangles</h1>
+      <h1>Package Rate Calculator</h1>
 
       <div class="row">
-        <div class="col-sm-3">
-          <h2>Add a triangle</h2>
-          <form id="new-triangle">
+        <div class="col-sm-6">
+          <h3>Enter your package specifications</h3>
+          <form id="new-package">
             <div class="form-group">
-              <label for="new-side-one">Side One</label>
-              <input id="new-side-one" type="text" class="form-control">
+              <label for="new-lbs">Enter the weight of your package in lbs</label>
+              <input id="new-lbs" type="text" class="form-control">
+            </div>
+            <h4>Enter the dimensions of your package</h4>
+            <div class="form-group">
+              <label for="new-l">Length</label>
+              <input id="new-l" type="text" class="form-control">
             </div>
              <div class="form-group">
-              <label for="new-side-two">Side Two</label>
-              <input id="new-side-two" type="text" class="form-control">
+              <label for="new-w">Width</label>
+              <input id="new-w" type="text" class="form-control">
             </div>
              <div class="form-group">
-              <label for="new-side-three">Side Three</label>
-              <input id="new-side-three" type="text" class="form-control">
+              <label for="new-h">Height</label>
+              <input id="new-h" type="text" class="form-control">
+            </div>
+             <div class="form-group">
+              <label for="new-miles">Distance in Miles</label>
+              <input id="new-miles" type="text" class="form-control">
+            </div>
+             <div class="form-group">
+              <label for="new-priority">Enter Priority: standard, next day or two day</label>
+              <input id="new-priority" type="text" class="form-control">
             </div>
 
-            <button type="submit" class="btn">Add</button>
+            <button type="submit" class="btn">Calculate!</button>
           </form>
-        </div> <!--1st col-sm-3 Column -->
+        </div> <!--1st col-sm-6 Column -->
 
-          <div class="col-sm-3">
+          <div class="col-sm-6">
             <div id="Equilateral">
               <h2>Equilateral</h2>
               <ul id="show-equilateral"></ul>
-          </div> <!--Eql -->
-        </div> <!--2nd col-sm-3 Column -->
+            </div> <!--Eql -->
+          </div> <!--2nd col-sm-6 Column -->
 
-          <div class="col-sm-3">
-            <div id="Isosceles">
-              <h2>Isosceles</h2>
-             <ul id="show-isosceles"></ul>
-          </div> <!--Iso -->
-        </div> <!--2nd col-sm-3 Column -->
-
-          <div class="col-sm-3">
-            <div id="Scalene">
-              <h2>Scalene</h2>
-              <ul id="show-scalene"></ul>
-          </div> <!--Scalene -->
-        </div> <!--2nd col-sm-3 Column -->
 
       </div> <!--row -->
     </div> <!--container -->

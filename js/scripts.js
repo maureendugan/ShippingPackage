@@ -1,53 +1,76 @@
-var Triangles = {
-    type: function() {
-        if (this.valid()) {
-            if (this.sideOne === this.sideTwo && this.sideTwo === this.sideThree) {
-                return "equilateral";  
-            }   else if(this.sideOne === this.sideTwo || this.sideTwo === this.sideThree || this.sideOne === this.sideThree) {
-                return "isosceles";
-            }   else {
-                return "scalene";
-            }
-        }   else {
-            return "Alert: you must enter a triangle";
+var Package = {
+    weight: function() {
+        return this.lbs * .25;
+    },
+
+    distance: function() {
+        return this.miles * .01;
+    }, 
+
+    size: function() {
+        if (this.l * this.w * this.h < 50) {
+            return 5;
+        } else if (this.l * this.w * this.h < 200) {
+            return 10;    
+        } else {
+            return 15;
         }
     },
 
-    valid: function() {
-        var sidesArray = [this.sideOne, this.sideTwo, this.sideThree];
-     
-        sidesArray = sidesArray.sort(function(a,b){return b-a});
-     
-        return ((sidesArray[2] + sidesArray[1]) >= sidesArray[0]);
+    speed: function() {
+        if (this.priority === "standard") {  
+            return 0;
+        } else if (this.priority === "next day") {
+            if (this.miles < 100) {
+                return 5;
+            } else {
+                return 25;
+            } 
+        } else {
+            return 10;
+        }
+    }, 
+
+    calculatePrice: function() {
+        return "$" + (this.weight() + this.distance() + this.size() + this.speed()).toFixed(2);
     }
 };
 
+
 $(document).ready(function() {
-  $("form#new-triangle").submit(function(event) {
+  $("form#new-package").submit(function(event) {
     event.preventDefault();
 
-    var sideOne = parseInt($("input#new-side-one").val());
-    var sideTwo = parseInt($("input#new-side-two").val());
-    var sideThree = parseInt($("input#new-side-three").val());
+    var lbs = parseFloat($("input#new-lbs").val());
+    var l = parseFloat($("input#new-l").val());
+    var w = parseFloat($("input#new-w").val());
+    var h = parseFloat($("input#new-h").val());
+    var miles = parseFloat($("input#new-miles").val());
+    var priority = $("input#new-priority").val();
 
-    var newTriangle = Object.create(Triangles);
-    newTriangle.sideOne = sideOne;
-    newTriangle.sideTwo = sideTwo;
-    newTriangle.sideThree = sideThree;
+    var newPackage = Object.create(Package);
+    newPackage.lbs = lbs;
+    newPackage.l = l;
+    newPackage.w = w;
+    newPackage.h = h;
+    newPackage.miles = miles;
+    newPackage.priority = priority;
+
 
     var result = newTriangle.type();
 
-    if (newTriangle.valid()) {
-        $('ul#show-' + result).append("<li>" + newTriangle.sideOne + ", "+ newTriangle.sideTwo + ", " + newTriangle.sideThree + "</li>");
+    // if (newTriangle.valid()) {
+    //     $('ul#show-' + result).append("<li>" + newTriangle.sideOne + ", "+ newTriangle.sideTwo + ", " + newTriangle.sideThree + "</li>");
 
-    } else {
-        alert("Please enter a valid triangle");
-    }
-        // $(".show-sides").last().click(function() {
-        //     $(".sideOne").text(newTriangle.sideOne);
+    // } else {
+    //     alert("Please enter a valid triangle");
+    // }
+    //     // $(".show-sides").last().click(function() {
+    //     //     $(".sideOne").text(newTriangle.sideOne);
 
-        // })
+//         // })
     this.reset();
   });
 });
+
 

@@ -1,52 +1,84 @@
-describe('Triangles', function() {
-  describe("type", function() {
-    it("returns equilateral if all sides are equal", function() {
-      var testTriangle = Object.create(Triangles);
-      testTriangle.sideOne = 2;
-      testTriangle.sideTwo = 2;
-      testTriangle.sideThree = 2;
-      testTriangle.type().should.equal("equilateral");
-    });
-
-      it("returns isosceles if two sides are equal", function() {
-      var testTriangle = Object.create(Triangles);
-      testTriangle.sideOne = 2;
-      testTriangle.sideTwo = 3;
-      testTriangle.sideThree = 2;
-      testTriangle.type().should.equal("isosceles");
-    });
-
-      it("returns scalene if no sides are equal", function() {
-      var testTriangle = Object.create(Triangles);
-      testTriangle.sideOne = 2;
-      testTriangle.sideTwo = 3;
-      testTriangle.sideThree = 4;
-      testTriangle.type().should.equal("scalene");
-    });
-
-      it("returns an alert if the sides do not make a triangle", function() {
-      var testTriangle = Object.create(Triangles);
-      testTriangle.sideOne = 10;
-      testTriangle.sideTwo = 1;
-      testTriangle.sideThree = 1;
-      testTriangle.type().should.equal("Alert: you must enter a triangle");
+describe('Package', function() {
+  describe('weight', function() {
+    it('multiplies the package weight by a constant', function() {
+      var testPackage = Object.create(Package);
+      testPackage.lbs = 4;
+      testPackage.weight().should.equal(1);
     });
   });
-  describe("valid", function() {
-    it("returns false if it is not a triangle", function() {
-      var testTriangle = Object.create(Triangles);
-      testTriangle.sideOne = 6;
-      testTriangle.sideTwo = 2;
-      testTriangle.sideThree = 2;
-      testTriangle.valid().should.equal(false);
-    });
 
-    it("returns true if it is a triangle", function() {
-      var testTriangle = Object.create(Triangles);
-      testTriangle.sideOne = 6;
-      testTriangle.sideTwo = 5;
-      testTriangle.sideThree = 3;
-      testTriangle.valid().should.equal(true);
+  describe('distance', function() {
+    it('multiplies total miles by a constant', function() {
+      var testPackage = Object.create(Package);
+      testPackage.miles = 200;
+      testPackage.distance().should.equal(2);
     });
   });
+
+  describe('size', function() {
+    it('returns $5 for packages smaller than 50 cubic inches', function () {
+      var testPackage = Object.create(Package);
+      testPackage.l = 4;
+      testPackage.w = 3;
+      testPackage.h = 2;
+      testPackage.size().should.equal(5);
+    });
+
+    it('returns $15 for packages larger than 200 cubic inches', function () {
+      var testPackage = Object.create(Package);
+      testPackage.l = 12;
+      testPackage.w = 12;
+      testPackage.h = 4;
+      testPackage.size().should.equal(15);
+    });
+
+    it('returns $10 for packages between 50 and 200 cubic inches', function () {
+      var testPackage = Object.create(Package);
+      testPackage.l = 10;
+      testPackage.w = 3;
+      testPackage.h = 4;
+      testPackage.size().should.equal(10);
+    });
+  });
+
+  describe('speed', function() {
+    it('returns a rate for the desired speed', function() {
+      var testPackage = Object.create(Package);
+      testPackage.priority = "next day";
+      testPackage.miles = 150;
+      testPackage.speed().should.equal(25);
+    });
+
+    it('returns a rate of $5 if the distance is within 100 miles', function() {
+      var testPackage = Object.create(Package);
+      testPackage.priority = "next day";
+      testPackage.miles = 67;
+      testPackage.speed().should.equal(5);
+    });
+
+    it('returns a rate of $10 if the priority is equal to two days', function() {
+      var testPackage = Object.create(Package);
+      testPackage.priority = "two day";
+      testPackage.speed().should.equal(10);
+    });
+
+    it('does not add a cost if the priority is standard', function() {
+      var testPackage = Object.create(Package);
+      testPackage.priority = "standard";
+      testPackage.speed().should.equal(0);
+    });
+  });
+
+  describe('calculatePrice', function() {
+    it('calculates the cost of sending a package', function() {
+      var testPackage = Object.create(Package);
+      testPackage.lbs = 8;
+      testPackage.l = 5;
+      testPackage.w = 10;
+      testPackage.h = 2;
+      testPackage.miles = 99;
+      testPackage.priority = "next day";
+      testPackage.calculatePrice().should.equal("$17.99");
+    });
+   });
 });
