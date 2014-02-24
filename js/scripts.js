@@ -1,39 +1,53 @@
-var Contact = {
-  fullName: function() {
-    return this.firstName + " " + this.lastName
-  }
-}
+var Triangles = {
+    type: function() {
+        if (this.valid()) {
+            if (this.sideOne === this.sideTwo && this.sideTwo === this.sideThree) {
+                return "equilateral";  
+            }   else if(this.sideOne === this.sideTwo || this.sideTwo === this.sideThree || this.sideOne === this.sideThree) {
+                return "isosceles";
+            }   else {
+                return "scalene";
+            }
+        }   else {
+            return "Alert: you must enter a triangle";
+        }
+    },
+
+    valid: function() {
+        var sidesArray = [this.sideOne, this.sideTwo, this.sideThree];
+     
+        sidesArray = sidesArray.sort(function(a,b){return b-a});
+     
+        return ((sidesArray[2] + sidesArray[1]) >= sidesArray[0]);
+    }
+};
 
 $(document).ready(function() {
-  $("form#new-contact").submit(function(event) {
+  $("form#new-triangle").submit(function(event) {
     event.preventDefault();
 
-    var inputtedFirstName = $("input#new-first-name").val();
-    var inputtedLastName = $("input#new-last-name").val();
-    var inputtedAddress = $("input#new-address").val();
+    var sideOne = parseInt($("input#new-side-one").val());
+    var sideTwo = parseInt($("input#new-side-two").val());
+    var sideThree = parseInt($("input#new-side-three").val());
 
-    var newContact = Object.create(Contact);
-    newContact.firstName = inputtedFirstName;
-    newContact.lastName = inputtedLastName;
-    newContact.address = inputtedAddress;
+    var newTriangle = Object.create(Triangles);
+    newTriangle.sideOne = sideOne;
+    newTriangle.sideTwo = sideTwo;
+    newTriangle.sideThree = sideThree;
 
-    $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+    var result = newTriangle.type();
 
-    $(".contact").last().click(function() {
-      $("#show-contact").show();
+    if (newTriangle.valid()) {
+        $('ul#show-' + result).append("<li>" + newTriangle.sideOne + ", "+ newTriangle.sideTwo + ", " + newTriangle.sideThree + "</li>");
 
-      $("#show-contact h2").text(newContact.fullName());
-      $(".first-name").text(newContact.firstName);
-      $(".last-name").text(newContact.lastName);
-      $(".address").text(newContact.address);
-    })
+    } else {
+        alert("Please enter a valid triangle");
+    }
+        // $(".show-sides").last().click(function() {
+        //     $(".sideOne").text(newTriangle.sideOne);
 
+        // })
     this.reset();
-
-
-
-  })
-})
-
-
+  });
+});
 

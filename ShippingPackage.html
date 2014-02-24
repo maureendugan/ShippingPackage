@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.11.0.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Triangles</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Triangles</h1>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <h2>Add a triangle</h2>
+          <form id="new-triangle">
+            <div class="form-group">
+              <label for="new-side-one">Side One</label>
+              <input id="new-side-one" type="text" class="form-control">
+            </div>
+             <div class="form-group">
+              <label for="new-side-two">Side Two</label>
+              <input id="new-side-two" type="text" class="form-control">
+            </div>
+             <div class="form-group">
+              <label for="new-side-three">Side Three</label>
+              <input id="new-side-three" type="text" class="form-control">
+            </div>
+
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </div> <!--1st col-sm-3 Column -->
+
+          <div class="col-sm-3">
+            <div id="Equilateral">
+              <h2>Equilateral</h2>
+              <ul id="show-equilateral"></ul>
+          </div> <!--Eql -->
+        </div> <!--2nd col-sm-3 Column -->
+
+          <div class="col-sm-3">
+            <div id="Isosceles">
+              <h2>Isosceles</h2>
+             <ul id="show-isosceles"></ul>
+          </div> <!--Iso -->
+        </div> <!--2nd col-sm-3 Column -->
+
+          <div class="col-sm-3">
+            <div id="Scalene">
+              <h2>Scalene</h2>
+              <ul id="show-scalene"></ul>
+          </div> <!--Scalene -->
+        </div> <!--2nd col-sm-3 Column -->
+
+      </div> <!--row -->
+    </div> <!--container -->
+  </body>
+</html>
