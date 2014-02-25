@@ -46,7 +46,7 @@ $(document).ready(function() {
     var w = parseFloat($("input#new-w").val());
     var h = parseFloat($("input#new-h").val());
     var miles = parseFloat($("input#new-miles").val());
-    var priority = $("input#new-priority").val();
+    var priority = $("input:checked" ).val();
 
     var newPackage = Object.create(Package);
     newPackage.lbs = lbs;
@@ -57,18 +57,10 @@ $(document).ready(function() {
     newPackage.priority = priority;
 
 
-    var result = newTriangle.type();
+    var result = newPackage.calculatePrice();
 
-    // if (newTriangle.valid()) {
-    //     $('ul#show-' + result).append("<li>" + newTriangle.sideOne + ", "+ newTriangle.sideTwo + ", " + newTriangle.sideThree + "</li>");
-
-    // } else {
-    //     alert("Please enter a valid triangle");
-    // }
-    //     // $(".show-sides").last().click(function() {
-    //     //     $(".sideOne").text(newTriangle.sideOne);
-
-//         // })
+    $('ul#show-price').append("<li>" + result + "</li>");
+    
     this.reset();
   });
 });
